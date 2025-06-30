@@ -1,18 +1,14 @@
-# Use a lightweight Java runtime base image
+# Use a lightweight OpenJDK base image
 FROM openjdk:17-jdk-slim
 
-# Metadata
-LABEL maintainer="your-name@example.com"
-LABEL app="Clarity Timesheet Automation"
-
-# Set the working directory in the container
+# Set working directory inside container
 WORKDIR /app
 
-# Copy the JAR file into the image
-COPY clarity-timesheet-automation-1.0-SNAPSHOT.jar app.jar
+# Copy the JAR file from target folder to container and rename it to app.jar
+COPY target/clarity-timesheet-automation-1.0-SNAPSHOT.jar app.jar
 
-# Expose port if your app runs a server (optional)
+# Expose port (if your app runs a server, like Spring Boot)
 # EXPOSE 8080
 
-# Define the entry point to run the application
+# Run the JAR file
 ENTRYPOINT ["java", "-jar", "app.jar"]
