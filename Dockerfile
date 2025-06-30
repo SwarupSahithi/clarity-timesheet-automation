@@ -1,14 +1,11 @@
-# Use a lightweight OpenJDK base image
+# Use a lightweight Java runtime base image
 FROM openjdk:17-jdk-slim
 
-# Set working directory inside container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the JAR file from target folder to container and rename it to app.jar
+# Copy your compiled JAR from target folder to the container, rename as app.jar
 COPY target/clarity-timesheet-automation-1.0-SNAPSHOT.jar app.jar
 
-# Expose port (if your app runs a server, like Spring Boot)
-# EXPOSE 8080
-
-# Run the JAR file
+# Command to run your JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]
